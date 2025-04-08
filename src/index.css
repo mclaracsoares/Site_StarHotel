@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-wine-900 text-white px-6 py-2 rounded-lg hover:bg-wine-800 transition duration-300;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition duration-300;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-wine-900;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-lg p-6;
+  }
+
+  .section-title {
+    @apply text-4xl font-playfair font-bold text-wine-900 text-center mb-12;
+  }
+
+  .container {
+    @apply max-w-7xl mx-auto px-4;
+  }
+}
+
+/* Estilos personalizados */
+.logo-container {
+  @apply flex items-center justify-center w-12 h-12 rounded-full bg-wine-100;
+}
+
+.nav-link {
+  @apply text-gray-700 hover:text-wine-900 transition duration-300;
+}
+
+.hero-section {
+  @apply relative h-screen flex items-center justify-center;
+}
+
+.hero-overlay {
+  @apply absolute inset-0 bg-black bg-opacity-40;
+}
+
+.service-card {
+  @apply text-center p-6 rounded-lg hover:shadow-lg transition duration-300;
+}
+
+.service-icon {
+  @apply text-4xl text-wine-900 mb-4;
+}
+
+.weather-card {
+  @apply bg-white rounded-lg shadow-lg p-6 text-center;
+}
+
+.reservation-form {
+  @apply max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8;
+}
+
+.admin-table {
+  @apply min-w-full bg-white rounded-lg shadow-lg;
+}
+
+.admin-table th {
+  @apply px-6 py-3 text-left bg-wine-900 text-white;
+}
+
+.admin-table td {
+  @apply px-6 py-4;
+}
+
+.status-badge {
+  @apply px-2 py-1 rounded-full text-xs;
+}
+
+.status-confirmed {
+  @apply bg-green-100 text-green-800;
+}
+
+.status-pending {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.status-cancelled {
+  @apply bg-red-100 text-red-800;
+}
