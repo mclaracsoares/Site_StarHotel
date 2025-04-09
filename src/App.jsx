@@ -7,6 +7,7 @@ import ReservasPage from './pages/ReservasPage'
 import AdminPage from './pages/AdminPage'
 import ConfirmacaoPage from './pages/ConfirmacaoPage'
 import GaleriaPage from './pages/GaleriaPage'
+import SobrePage from './pages/SobrePage'
 import './index.css'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/confirmacao" element={<ConfirmacaoPage />} />
             <Route path="/galeria" element={<GaleriaPage />} />
+            <Route path="/sobre" element={<SobrePage />} />
           </Routes>
         </main>
         <Footer />
