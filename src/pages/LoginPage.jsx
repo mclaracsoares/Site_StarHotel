@@ -20,9 +20,10 @@ function LoginPage() {
     try {
       const user = await Parse.User.logIn(username, password);
       console.log('Usuário logado com sucesso:', user);
+      // Disparar evento para atualizar UI
+      window.dispatchEvent(new Event('userChange'));
       // Aqui você atualizaria o estado global/contexto
       // loginUser(user);
-      alert('Login bem-sucedido!'); // Placeholder
       navigate('/'); // Redireciona para a home page após login
     } catch (err) {
       console.error('Erro ao fazer login:', err);
