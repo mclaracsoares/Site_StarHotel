@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
-const GaleriaPage = () => {
+const Gallery = () => {
   const roomTypes = [
     {
       id: 'triplo',
@@ -11,7 +11,7 @@ const GaleriaPage = () => {
       features: [
         '3 camas de solteiro ou 1 de casal e 1 solteiro',
         'Ar condicionado',
-        'Televisão',
+        'TV de tela plana',
         'Banheiro privativo',
         'Wi-Fi grátis'
       ],
@@ -29,7 +29,7 @@ const GaleriaPage = () => {
       features: [
         'Duas camas de solteiro',
         'Ar condicionado',
-        'Televisão',
+        'TV de tela plana',
         'Banheiro privativo',
         'Wi-Fi grátis'
       ],
@@ -47,7 +47,7 @@ const GaleriaPage = () => {
       features: [
         'Uma cama de casal',
         'Ar condicionado',
-        'Televisão',
+        'TV de tela plana',
         'Banheiro privativo',
         'Wi-Fi grátis'
       ],
@@ -69,7 +69,7 @@ const GaleriaPage = () => {
         'Cozinha equipada',
         'Uma cama de casal e uma de solteiro',
         'Ar condicionado',
-        'Televisão',
+        'TV de tela plana',
         'Wi-Fi grátis'
       ],
       images: [
@@ -88,39 +88,6 @@ const GaleriaPage = () => {
     flat: 0
   });
 
-  // Estado para controlar se o carrossel está pausado
-  const [isPaused, setIsPaused] = useState({
-    triplo: false,
-    duplo: false,
-    casal: false,
-    flat: false
-  });
-
-  // Referência ao intervalo para poder pausá-lo e continuá-lo
-  const intervalRef = useRef(null);
-
-  // Efeito para alternar automaticamente as imagens a cada 5 segundos
-  useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      roomTypes.forEach(room => {
-        // Só avança a imagem se o carrossel não estiver pausado para este quarto
-        if (!isPaused[room.id]) {
-          setCurrentImageIndex(prev => ({
-            ...prev,
-            [room.id]: (prev[room.id] + 1) % room.images.length
-          }));
-        }
-      });
-    }, 5000); // 5000 milissegundos = 5 segundos
-
-    return () => {
-      // Limpa o intervalo quando o componente é desmontado
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [isPaused]); // Adiciona isPaused como dependência para que o efeito seja recriado quando ele mudar
-
   // Funções para navegar pelas imagens
   const nextImage = (roomTypeId) => {
     setCurrentImageIndex(prev => ({
@@ -133,21 +100,6 @@ const GaleriaPage = () => {
     setCurrentImageIndex(prev => ({
       ...prev,
       [roomTypeId]: (prev[roomTypeId] - 1 + roomTypes.find(room => room.id === roomTypeId).images.length) % roomTypes.find(room => room.id === roomTypeId).images.length
-    }));
-  };
-
-  // Funções para pausar e continuar o carrossel
-  const pauseCarousel = (roomTypeId) => {
-    setIsPaused(prev => ({
-      ...prev,
-      [roomTypeId]: true
-    }));
-  };
-
-  const resumeCarousel = (roomTypeId) => {
-    setIsPaused(prev => ({
-      ...prev,
-      [roomTypeId]: false
     }));
   };
 
@@ -170,11 +122,7 @@ const GaleriaPage = () => {
             <div key={room.id} className="bg-white rounded-xl shadow-lg overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-2">
                 {/* Carrossel de imagens */}
-                <div 
-                  className="relative"
-                  onMouseEnter={() => pauseCarousel(room.id)}
-                  onMouseLeave={() => resumeCarousel(room.id)}
-                >
+                <div className="relative">
                   <div className="h-80 md:h-full relative">
                     <img
                       src={room.images[currentImageIndex[room.id]]}
@@ -248,4 +196,4 @@ const GaleriaPage = () => {
   );
 };
 
-export default GaleriaPage; 
+export default Gallery; 

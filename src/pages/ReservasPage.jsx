@@ -34,6 +34,13 @@ function ReservasPage() {
       if (!Parse.applicationId) {
         throw new Error('Parse não está inicializado corretamente')
       }
+      
+      // Verificar se o usuário está autenticado
+      const currentUser = Parse.User.current();
+      if (!currentUser) {
+        throw new Error('Usuário não está autenticado. Por favor, faça login.');
+      }
+      
       console.log('Parse inicializado. Criando objeto Reservation...') 
       
       const Reserva = Parse.Object.extend('Reservation') 
@@ -49,6 +56,10 @@ function ReservasPage() {
       reserva.set('numeroPessoas', parseInt(formData.numeroPessoas));
       reserva.set('observacoes', formData.observacoes);
       reserva.set('status', 'pendente');
+      
+      // Associar a reserva ao usuário atual
+      reserva.set('createdBy', currentUser);
+      console.log('Reserva associada ao usuário:', currentUser.id);
 
       console.log('Tentando salvar reserva no Back4App...') 
       await reserva.save()

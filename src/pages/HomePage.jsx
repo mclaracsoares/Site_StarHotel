@@ -38,11 +38,11 @@ function HomePage() {
           <h2 className="text-4xl font-playfair font-bold text-wine-900 text-center mb-12">
             Nossos Quartos
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Quarto Standard */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
-                src="/images/quarto-1.jpg"
+                src="/images/quarto_standard.jpg"
                 alt="Quarto Standard"
                 className="w-full h-64 object-cover"
               />
@@ -52,52 +52,73 @@ function HomePage() {
                   Conforto e praticidade para sua estadia.
                 </p>
                 <Link
-                  to="/reservas"
+                  to="/galeria"
                   className="btn-primary inline-block"
                 >
-                  Reservar
+                  Saiba Mais
                 </Link>
               </div>
             </div>
 
-            {/* Quarto Deluxe */}
+            {/* Quarto Casal */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
-                src="/images/quarto-2.jpg"
-                alt="Quarto Deluxe"
+                src="/images/quarto_casal.jpg"
+                alt="Quarto Casal"
                 className="w-full h-64 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Quarto Deluxe</h3>
+                <h3 className="text-xl font-semibold mb-2">Quarto Casal</h3>
                 <p className="text-gray-600 mb-4">
-                  Mais espaço e conforto para sua hospedagem.
+                  Uma cama de casal para um descanso perfeito.
                 </p>
                 <Link
-                  to="/reservas"
+                  to="/galeria"
                   className="btn-primary inline-block"
                 >
-                  Reservar
+                  Saiba Mais
                 </Link>
               </div>
             </div>
 
-            {/* Suíte */}
+            {/* Quarto Triplo */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
-                src="/images/quarto-3.jpg"
-                alt="Suíte"
+                src="/images/quarto_triplo.jpg"
+                alt="Quarto Triplo"
                 className="w-full h-64 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Suíte</h3>
+                <h3 className="text-xl font-semibold mb-2">Quarto Triplo</h3>
                 <p className="text-gray-600 mb-4">
-                  O máximo em conforto e luxo para sua estadia.
+                  Ideal para famílias ou grupos de amigos.
                 </p>
                 <Link
-                  to="/reservas"
+                  to="/galeria"
                   className="btn-primary inline-block"
                 >
-                  Reservar
+                  Saiba Mais
+                </Link>
+              </div>
+            </div>
+
+            {/* Flat */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <img
+                src="/images/flat.jpg"
+                alt="Flat"
+                className="w-full h-64 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Flat</h3>
+                <p className="text-gray-600 mb-4">
+                  Mini apartamento completo para estadias longas.
+                </p>
+                <Link
+                  to="/galeria"
+                  className="btn-primary inline-block"
+                >
+                  Saiba Mais
                 </Link>
               </div>
             </div>
