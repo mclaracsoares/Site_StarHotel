@@ -8,7 +8,7 @@ function HomePage() {
       <section className="relative h-screen">
         <div className="absolute inset-0">
           <img
-            src="/images/faixada.jpg"
+            src="/images/hotel-banner.jpg"
             alt="Star Hotel"
             className="w-full h-full object-cover"
           />

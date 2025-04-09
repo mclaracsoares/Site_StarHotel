@@ -8,13 +8,14 @@ function WeatherWidget() {
 
   useEffect(() => {
     const fetchWeather = async () => {
+      console.log('Tentando usar a chave API:', import.meta.env.VITE_WEATHER_API_KEY);
       try {
         const response = await axios.get(
           'https://api.openweathermap.org/data/2.5/weather',
           {
             params: {
               q: 'Limoeiro,BR',
-              appid: import.meta.env.VITE_OPENWEATHER_API_KEY,
+              appid: import.meta.env.VITE_WEATHER_API_KEY,
               units: 'metric',
               lang: 'pt_br'
             }
@@ -23,6 +24,7 @@ function WeatherWidget() {
         setWeather(response.data)
         setLoading(false)
       } catch (err) {
+        console.error('Erro detalhado ao buscar previsão do tempo:', err);
         setError('Não foi possível carregar a previsão do tempo')
         setLoading(false)
       }
