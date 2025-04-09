@@ -45,24 +45,38 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Contato */}
+          {/* Contato e Informações */}
           <div>
-            <h3 className="text-xl font-playfair font-bold mb-4">Contato</h3>
+            <h3 className="text-xl font-playfair font-bold mb-4">Contato e Informações</h3>
             <ul className="space-y-2">
-              <li className="flex items-center">
-                <i className="fas fa-phone mr-2"></i>
-                <span className="text-gray-300">(81) 9999-9999</span>
+              <li className="text-gray-300">Wifi Grátis</li>
+              <li className="text-gray-300">Estacionamento</li>
+              <li className="text-gray-300">Café da manhã não incluso</li>
+              <li className="text-gray-300">
+                <span className="font-semibold">Endereço:</span> Avenida Jerônimo Heráclio, 723, Limoeiro-PE
               </li>
-              <li className="flex items-center">
-                <i className="fas fa-envelope mr-2"></i>
-                <span className="text-gray-300">contato@starhotel.com.br</span>
+              <li className="text-gray-300">
+                <span className="font-semibold">E-mail:</span> Starhotellimoeiro@hotmail.com
               </li>
-              <li className="flex items-center">
-                <i className="fas fa-map-marker-alt mr-2"></i>
-                <span className="text-gray-300">
-                  Rua Principal, 123 - Centro, Limoeiro-PE
-                </span>
+              <li className="text-gray-300">
+                <a href="https://wa.me/5581982847055" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                  <span className="font-semibold">Whatsapp:</span> (81) 98284-7055
+                </a>
               </li>
+              <li className="text-gray-300">
+                <span className="font-semibold">Fixo:</span> (81) 3628-2795
+              </li>
+            </ul>
+          </div>
+
+          {/* Tipos de Quarto */}
+          <div>
+            <h3 className="text-xl font-playfair font-bold mb-4">Acomodações</h3>
+             <ul className="space-y-2">
+              <li className="text-gray-300">Flat</li>
+              <li className="text-gray-300">Quarto Duplo</li>
+              <li className="text-gray-300">Quarto de Casal</li>
+              <li className="text-gray-300">Quarto Triplo</li>
             </ul>
           </div>
 
@@ -87,7 +101,7 @@ function Footer() {
                 <FaInstagram size={24} />
               </a>
               <a
-                href="https://wa.me/5581999999999"
+                href="https://wa.me/5581982847055"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white"

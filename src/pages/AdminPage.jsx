@@ -58,6 +58,22 @@ function AdminPage() {
     }
   }
 
+  const deleteReserva = async (id) => {
+    if (window.confirm('Tem certeza que deseja excluir esta reserva?')) {
+      try {
+        const Reserva = Parse.Object.extend('Reserva')
+        const query = new Parse.Query(Reserva)
+        const reserva = await query.get(id)
+        await reserva.destroy()
+        // Atualizar a lista de reservas após exclusão
+        fetchReservas()
+      } catch (error) {
+        console.error('Erro ao excluir reserva:', error)
+        alert('Erro ao excluir reserva')
+      }
+    }
+  }
+
   const formatDate = (date) => {
     return new Date(date).toLocaleDateString('pt-BR')
   }
@@ -147,6 +163,13 @@ function AdminPage() {
                         Cancelar
                       </button>
                     )}
+                    {/* Botão Excluir */}
+                    <button
+                      onClick={() => deleteReserva(reserva.id)}
+                      className="text-gray-500 hover:text-gray-700"
+                    >
+                      Excluir
+                    </button>
                   </div>
                 </td>
               </tr>

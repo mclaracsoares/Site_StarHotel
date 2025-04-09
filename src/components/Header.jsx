@@ -6,17 +6,15 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <header className="fixed w-full bg-white shadow-md z-50">
+    <header className="relative w-full bg-white shadow-md z-50">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center">
-            <div className="logo-container mr-3">
-              <img 
-                src="/images/logo.png" 
-                alt="Star Hotel Logo" 
-                className="w-8 h-8"
-              />
-            </div>
+          <Link to="/" className="flex items-center space-x-3">
+            <img 
+              src="/images/logo.png" 
+              alt="Star Hotel Logo" 
+              className="h-8 w-auto"
+            />
             <div className="text-2xl font-playfair font-bold text-wine-900">
               Star Hotel
             </div>
