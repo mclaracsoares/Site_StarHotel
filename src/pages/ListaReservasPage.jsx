@@ -8,6 +8,13 @@ function ListaReservasPage() {
 
   useEffect(() => {
     const fetchReservas = async () => {
+      const currentUser = Parse.User.current();
+      if (!currentUser) {
+        setError('Usuário não autenticado.');
+        setLoading(false);
+        return; // Não busca se não estiver logado
+      }
+
       try {
         console.log('Iniciando busca de reservas...')
         
@@ -18,9 +25,13 @@ function ListaReservasPage() {
         
         const Reserva = Parse.Object.extend('Reservation')
         const query = new Parse.Query(Reserva)
+        
+        // Filtrar por usuário logado
+        query.equalTo('createdBy', currentUser); 
+
         query.descending('createdAt')
         
-        console.log('Executando query...')
+        console.log('Executando query para usuário:', currentUser.id)
         const results = await query.find()
         console.log('Resultados encontrados:', results.length)
         
