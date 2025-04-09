@@ -1,10 +1,12 @@
-import Parse from 'parse';
+import Parse from 'parse/dist/parse.min.js'
 
-// Inicializa o Parse com as credenciais do Back4App
-Parse.initialize(
-  process.env.REACT_APP_BACK4APP_APPLICATION_ID,
-  process.env.REACT_APP_BACK4APP_JAVASCRIPT_KEY
-);
-Parse.serverURL = 'https://parseapi.back4app.com/';
+// Configuração do Parse
+const PARSE_APP_ID = import.meta.env.VITE_BACK4APP_APPLICATION_ID
+const PARSE_JS_KEY = import.meta.env.VITE_BACK4APP_JAVASCRIPT_KEY
+const PARSE_SERVER_URL = 'https://parseapi.back4app.com/'
 
-export default Parse; 
+// Inicialização do Parse
+Parse.initialize(PARSE_APP_ID, PARSE_JS_KEY)
+Parse.serverURL = PARSE_SERVER_URL
+
+export default Parse 

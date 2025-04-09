@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Parse from 'parse/dist/parse.min.js'
+import Parse from '../config/back4app'
 
 function AdminPage() {
   const [reservas, setReservas] = useState([])

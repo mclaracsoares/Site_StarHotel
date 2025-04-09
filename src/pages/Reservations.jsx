@@ -6,6 +6,7 @@ const Reservations = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    telefone: '',
     checkIn: '',
     checkOut: '',
     guests: 1,
@@ -17,6 +18,7 @@ const Reservations = () => {
   const loadReservations = async () => {
     try {
       const query = new Parse.Query('Reservation');
+      query.descending('createdAt');
       const results = await query.find();
       setReservations(results.map(reservation => ({
         id: reservation.id,
@@ -50,21 +52,35 @@ const Reservations = () => {
         // Atualiza reserva existente
         const query = new Parse.Query('Reservation');
         const reservationToUpdate = await query.get(editingId);
-        Object.keys(formData).forEach(key => {
-          reservationToUpdate.set(key, formData[key]);
-        });
+
+        // Define campos com conversão de data e nomes corretos
+        reservationToUpdate.set('nome', formData.name);
+        reservationToUpdate.set('email', formData.email);
+        reservationToUpdate.set('telefone', formData.telefone);
+        reservationToUpdate.set('dataEntrada', new Date(formData.checkIn));
+        reservationToUpdate.set('dataSaida', new Date(formData.checkOut));
+        reservationToUpdate.set('numeroPessoas', parseInt(formData.guests));
+        reservationToUpdate.set('tipoQuarto', formData.roomType);
+
         await reservationToUpdate.save();
       } else {
         // Cria nova reserva
-        Object.keys(formData).forEach(key => {
-          reservation.set(key, formData[key]);
-        });
+        // Define campos com conversão de data e nomes corretos
+        reservation.set('nome', formData.name);
+        reservation.set('email', formData.email);
+        reservation.set('telefone', formData.telefone);
+        reservation.set('dataEntrada', new Date(formData.checkIn));
+        reservation.set('dataSaida', new Date(formData.checkOut));
+        reservation.set('numeroPessoas', parseInt(formData.guests));
+        reservation.set('tipoQuarto', formData.roomType);
+
         await reservation.save();
       }
 
       setFormData({
         name: '',
         email: '',
+        telefone: '',
         checkIn: '',
         checkOut: '',
         guests: 1,
@@ -80,12 +96,13 @@ const Reservations = () => {
   // Edita uma reserva existente
   const handleEdit = (reservation) => {
     setFormData({
-      name: reservation.name,
+      name: reservation.nome,
       email: reservation.email,
-      checkIn: reservation.checkIn,
-      checkOut: reservation.checkOut,
-      guests: reservation.guests,
-      roomType: reservation.roomType
+      telefone: reservation.telefone || '',
+      checkIn: reservation.dataEntrada ? new Date(reservation.dataEntrada).toISOString().split('T')[0] : '',
+      checkOut: reservation.dataSaida ? new Date(reservation.dataSaida).toISOString().split('T')[0] : '',
+      guests: reservation.numeroPessoas,
+      roomType: reservation.tipoQuarto
     });
     setEditingId(reservation.id);
   };
@@ -144,6 +161,19 @@ const Reservations = () => {
                   onChange={handleChange}
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                   required
+                />
+              </div>
+              <div>
+                <label htmlFor="telefone" className="block text-sm font-medium text-gray-700">
+                  Telefone
+                </label>
+                <input
+                  type="tel"
+                  id="telefone"
+                  name="telefone"
+                  value={formData.telefone}
+                  onChange={handleChange}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
               <div>
@@ -226,13 +256,14 @@ const Reservations = () => {
                 >
                   <div className="flex justify-between items-start">
                     <div>
-                      <h4 className="font-medium text-gray-900">{reservation.name}</h4>
+                      <h4 className="font-medium text-gray-900">{reservation.nome}</h4>
                       <p className="text-sm text-gray-600">{reservation.email}</p>
                       <p className="text-sm text-gray-600">
-                        {reservation.checkIn} - {reservation.checkOut}
+                        {reservation.dataEntrada ? new Date(reservation.dataEntrada).toLocaleDateString() : 'N/A'} - 
+                        {reservation.dataSaida ? new Date(reservation.dataSaida).toLocaleDateString() : 'N/A'}
                       </p>
                       <p className="text-sm text-gray-600">
-                        {reservation.guests} hóspedes - Quarto {reservation.roomType}
+                        {reservation.numeroPessoas} hóspedes - Quarto {reservation.tipoQuarto}
                       </p>
                     </div>
                     <div className="flex space-x-2">

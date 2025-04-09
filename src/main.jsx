@@ -3,8 +3,8 @@
     import ReactDOM from 'react-dom/client'
     import App from './App'
     import './index.css'
-    // Importa a configuração do Parse (verifique se este caminho está correto)
-    import './config/parseConfig' // <--- Verifique este import
+    // Importa a configuração do Back4App
+    import './config/back4app'
 
     ReactDOM.createRoot(document.getElementById('root')).render(
       <React.StrictMode>

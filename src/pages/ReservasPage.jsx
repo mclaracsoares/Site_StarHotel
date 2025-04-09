@@ -1,18 +1,18 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Parse from 'parse/dist/parse.min.js'
+import { useNavigate } from 'react-router-dom' 
+import Parse from '../config/back4app'
 
 function ReservasPage() {
+  console.log('Componente ReservasPage renderizado.'); 
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
     telefone: '',
-    checkIn: '',
-    checkOut: '',
-    adultos: 1,
-    criancas: 0,
-    tipoQuarto: 'standard',
+    dataEntrada: '',
+    dataSaida: '',
+    tipoQuarto: '',
+    numeroPessoas: 1,
     observacoes: ''
   })
 
@@ -25,161 +25,133 @@ function ReservasPage() {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault(); 
+    console.log('--- handleSubmit iniciada! ---'); 
+    console.log('Tentando submeter reserva com dados:', formData) 
     
     try {
-      // Criar uma nova reserva no Back4App
-      const Reserva = Parse.Object.extend('Reserva')
-      const reserva = new Reserva()
+      console.log('Verificando inicialização do Parse...') 
+      if (!Parse.applicationId) {
+        throw new Error('Parse não está inicializado corretamente')
+      }
+      console.log('Parse inicializado. Criando objeto Reservation...') 
       
-      await reserva.save({
-        nome: formData.nome,
-        email: formData.email,
-        telefone: formData.telefone,
-        checkIn: new Date(formData.checkIn),
-        checkOut: new Date(formData.checkOut),
-        adultos: parseInt(formData.adultos),
-        criancas: parseInt(formData.criancas),
-        tipoQuarto: formData.tipoQuarto,
-        observacoes: formData.observacoes,
-        status: 'pendente'
-      })
+      const Reserva = Parse.Object.extend('Reservation') 
+      const reserva = new Reserva()
 
-      // Redirecionar para página de confirmação
-      navigate('/confirmacao', { state: { reserva: formData } })
+      console.log('Definindo campos da reserva...') 
+      reserva.set('nome', formData.nome);
+      reserva.set('email', formData.email);
+      reserva.set('telefone', formData.telefone);
+      reserva.set('dataEntrada', new Date(formData.dataEntrada));
+      reserva.set('dataSaida', new Date(formData.dataSaida));
+      reserva.set('tipoQuarto', formData.tipoQuarto);
+      reserva.set('numeroPessoas', parseInt(formData.numeroPessoas));
+      reserva.set('observacoes', formData.observacoes);
+      reserva.set('status', 'pendente');
+
+      console.log('Tentando salvar reserva no Back4App...') 
+      await reserva.save()
+      
+      console.log('Reserva salva com sucesso!', reserva.id) 
+      navigate('/confirmacao', { state: { reserva: { ...formData } } });
     } catch (error) {
-      console.error('Erro ao criar reserva:', error)
-      alert('Ocorreu um erro ao processar sua reserva. Por favor, tente novamente.')
+      console.error('Erro detalhado ao salvar reserva:', error) 
+      alert(`Ocorreu um erro ao processar sua reserva: ${error.message}. Verifique o console para mais detalhes.`)
     }
   }
 
   return (
-    <div className="container mx-auto px-4 py-20">
-      <h1 className="text-4xl font-playfair font-bold text-wine-900 text-center mb-12">
+    <div className="container mx-auto px-4 py-12">
+      <h1 className="text-4xl font-playfair font-bold text-wine-900 text-center mb-8">
         Faça sua Reserva
       </h1>
-
-      <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Dados Pessoais */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-gray-700 mb-2" htmlFor="nome">
-                Nome Completo
-              </label>
-              <input
-                type="text"
-                id="nome"
-                name="nome"
-                value={formData.nome}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-wine-900"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-gray-700 mb-2" htmlFor="email">
-                E-mail
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-wine-900"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-gray-700 mb-2" htmlFor="telefone">
-                Telefone
-              </label>
-              <input
-                type="tel"
-                id="telefone"
-                name="telefone"
-                value={formData.telefone}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-wine-900"
-                required
-              />
-            </div>
+      
+      <form 
+        onSubmit={(e) => handleSubmit(e)}
+        noValidate
+        className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-gray-700 mb-2" htmlFor="nome">
+              Nome Completo
+            </label>
+            <input
+              type="text"
+              id="nome"
+              name="nome"
+              value={formData.nome}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-wine-900"
+            />
           </div>
-
-          {/* Datas */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-gray-700 mb-2" htmlFor="checkIn">
-                Data de Check-in
-              </label>
-              <input
-                type="date"
-                id="checkIn"
-                name="checkIn"
-                value={formData.checkIn}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-wine-900"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-gray-700 mb-2" htmlFor="checkOut">
-                Data de Check-out
-              </label>
-              <input
-                type="date"
-                id="checkOut"
-                name="checkOut"
-                value={formData.checkOut}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-wine-900"
-                required
-              />
-            </div>
+          
+          <div>
+            <label className="block text-gray-700 mb-2" htmlFor="email">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-wine-900"
+            />
           </div>
+        </div>
 
-          {/* Hóspedes */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-gray-700 mb-2" htmlFor="adultos">
-                Adultos
-              </label>
-              <select
-                id="adultos"
-                name="adultos"
-                value={formData.adultos}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-wine-900"
-              >
-                {[1, 2, 3, 4].map(num => (
-                  <option key={num} value={num}>
-                    {num}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-gray-700 mb-2" htmlFor="criancas">
-                Crianças
-              </label>
-              <select
-                id="criancas"
-                name="criancas"
-                value={formData.criancas}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-wine-900"
-              >
-                {[0, 1, 2, 3].map(num => (
-                  <option key={num} value={num}>
-                    {num}
-                  </option>
-                ))}
-              </select>
-            </div>
+        <div className="mt-6">
+          <label className="block text-gray-700 mb-2" htmlFor="telefone">
+            Telefone
+          </label>
+          <input
+            type="tel"
+            id="telefone"
+            name="telefone"
+            value={formData.telefone}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-wine-900"
+          />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <div>
+            <label className="block text-gray-700 mb-2" htmlFor="dataEntrada">
+              Data de Check-in
+            </label>
+            <input
+              type="date"
+              id="dataEntrada"
+              name="dataEntrada"
+              value={formData.dataEntrada}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-wine-900"
+            />
           </div>
+          
+          <div>
+            <label className="block text-gray-700 mb-2" htmlFor="dataSaida">
+              Data de Check-out
+            </label>
+            <input
+              type="date"
+              id="dataSaida"
+              name="dataSaida"
+              value={formData.dataSaida}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-wine-900"
+            />
+          </div>
+        </div>
 
-          {/* Tipo de Quarto */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
           <div>
             <label className="block text-gray-700 mb-2" htmlFor="tipoQuarto">
               Tipo de Quarto
@@ -189,40 +161,61 @@ function ReservasPage() {
               name="tipoQuarto"
               value={formData.tipoQuarto}
               onChange={handleChange}
+              required
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-wine-900"
             >
+              <option value="">Selecione um quarto</option>
               <option value="standard">Quarto Standard</option>
               <option value="deluxe">Quarto Deluxe</option>
               <option value="suite">Suíte</option>
             </select>
           </div>
-
-          {/* Observações */}
+          
           <div>
-            <label className="block text-gray-700 mb-2" htmlFor="observacoes">
-              Observações
+            <label className="block text-gray-700 mb-2" htmlFor="numeroPessoas">
+              Número de Pessoas
             </label>
-            <textarea
-              id="observacoes"
-              name="observacoes"
-              value={formData.observacoes}
+            <select
+              id="numeroPessoas"
+              name="numeroPessoas"
+              value={formData.numeroPessoas}
               onChange={handleChange}
-              rows="4"
+              required
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-wine-900"
-            ></textarea>
-          </div>
-
-          {/* Botão de Envio */}
-          <div className="text-center">
-            <button
-              type="submit"
-              className="bg-wine-900 text-white px-8 py-3 rounded-lg hover:bg-wine-800 transition duration-300"
             >
-              Confirmar Reserva
-            </button>
+              {[1, 2, 3, 4].map(num => (
+                <option key={num} value={num}>
+                  {num} {num === 1 ? 'pessoa' : 'pessoas'}
+                </option>
+              ))}
+            </select>
           </div>
-        </form>
-      </div>
+        </div>
+
+        <div className="mt-6">
+          <label className="block text-gray-700 mb-2" htmlFor="observacoes">
+            Observações
+          </label>
+          <textarea
+            id="observacoes"
+            name="observacoes"
+            value={formData.observacoes}
+            onChange={handleChange}
+            rows="4"
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-wine-900"
+          />
+        </div>
+
+        <div className="mt-8">
+          <button
+            type="submit"
+            className="w-full bg-wine-900 text-white px-6 py-3 rounded-lg hover:bg-wine-800 transition duration-300"
+          >
+            Confirmar Reserva
+          </button>
+        </div>
+      </form>
+
     </div>
   )
 }
