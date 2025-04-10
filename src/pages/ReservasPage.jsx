@@ -176,9 +176,10 @@ function ReservasPage() {
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-wine-900"
             >
               <option value="">Selecione um quarto</option>
-              <option value="standard">Quarto Standard</option>
-              <option value="deluxe">Quarto Deluxe</option>
-              <option value="suite">Suíte</option>
+              <option value="triplo">Quarto Triplo</option>
+              <option value="duplo">Quarto Duplo</option>
+              <option value="casal">Quarto Casal</option>
+              <option value="flat">Flat</option>
             </select>
           </div>
           

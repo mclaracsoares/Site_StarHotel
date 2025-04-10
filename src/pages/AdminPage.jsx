@@ -128,11 +128,6 @@ function AdminPage() {
                   {reserva.criancas > 0 && `, ${reserva.criancas} Crianças`}
                 </td>
                 <td className="px-6 py-4">
-                  {reserva.tipoQuarto === 'standard' && 'Standard'}
-                  {reserva.tipoQuarto === 'deluxe' && 'Deluxe'}
-                  {reserva.tipoQuarto === 'suite' && 'Suíte'}
-                </td>
-                <td className="px-6 py-4">
                   <span
                     className={`px-2 py-1 rounded-full text-xs ${
                       reserva.status === 'confirmada'

@@ -240,7 +240,7 @@ const GaleriaPage = () => {
                   </div>
                 </div>
               </div>
-            </div>
+        </div>
           ))}
         </div>
       </div>

@@ -39,15 +39,15 @@ function HomePage() {
             Nossos Quartos
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Quarto Standard */}
+            {/* Quarto Duplo */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
-                src="/images/quarto_standard.jpg"
-                alt="Quarto Standard"
+                src="/images/duplo.jpg"
+                alt="Quarto Duplo"
                 className="w-full h-64 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Quarto Standard</h3>
+                <h3 className="text-xl font-semibold mb-2">Quarto Duplo</h3>
                 <p className="text-gray-600 mb-4">
                   Conforto e praticidade para sua estadia.
                 </p>
@@ -63,7 +63,7 @@ function HomePage() {
             {/* Quarto Casal */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
-                src="/images/quarto_casal.jpg"
+                src="/images/casal.jpg"
                 alt="Quarto Casal"
                 className="w-full h-64 object-cover"
               />
@@ -84,7 +84,7 @@ function HomePage() {
             {/* Quarto Triplo */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
-                src="/images/quarto_triplo.jpg"
+                src="/images/triplo.jpg"
                 alt="Quarto Triplo"
                 className="w-full h-64 object-cover"
               />
@@ -105,7 +105,7 @@ function HomePage() {
             {/* Flat */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
-                src="/images/flat.jpg"
+                src="flat.jpg"
                 alt="Flat"
                 className="w-full h-64 object-cover"
               />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 const Gallery = () => {
@@ -80,28 +80,30 @@ const Gallery = () => {
     }
   ];
 
-  // Estado para controlar o carrossel de imagens
-  const [currentImageIndex, setCurrentImageIndex] = useState({
-    triplo: 0,
-    duplo: 0,
-    casal: 0,
-    flat: 0
-  });
+  // Exemplo de implementação do carrossel
+  const images = [
+    '/images/triplo.jpg',
+    '/images/triplo_2.jpg',
+    '/images/triplo_3.jpg',
+    '/images/duplo.jpg',
+    '/images/duplo_2.jpg',
+    '/images/duplo_3.jpg',
+    '/images/casal.jpg',
+    '/images/casal_2.jpg',
+    '/images/casal_3.jpg',
+    '/images/flat.jpg',
+    '/images/flat_2.jpg',
+    '/images/flat_3.jpg'
+  ];
 
-  // Funções para navegar pelas imagens
-  const nextImage = (roomTypeId) => {
-    setCurrentImageIndex(prev => ({
-      ...prev,
-      [roomTypeId]: (prev[roomTypeId] + 1) % roomTypes.find(room => room.id === roomTypeId).images.length
-    }));
-  };
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const prevImage = (roomTypeId) => {
-    setCurrentImageIndex(prev => ({
-      ...prev,
-      [roomTypeId]: (prev[roomTypeId] - 1 + roomTypes.find(room => room.id === roomTypeId).images.length) % roomTypes.find(room => room.id === roomTypeId).images.length
-    }));
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
@@ -123,21 +125,36 @@ const Gallery = () => {
               <div className="grid grid-cols-1 md:grid-cols-2">
                 {/* Carrossel de imagens */}
                 <div className="relative">
-                  <div className="h-80 md:h-full relative">
-                    <img
-                      src={room.images[currentImageIndex[room.id]]}
-                      alt={`${room.title} - Imagem ${currentImageIndex[room.id] + 1}`}
-                      className="w-full h-full object-cover"
-                    />
+                  <div className="h-80 md:h-64 relative overflow-hidden">
+                    <div className="carousel">
+                      <div
+                        className="carousel-track"
+                        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                      >
+                        {room.images.map((image, index) => (
+                          <div className="carousel-slide" key={index}>
+                            <img
+                              src={image}
+                              alt={`${room.title} - Imagem ${index + 1}`}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                     {/* Controles do carrossel */}
                     <button 
-                      onClick={() => prevImage(room.id)}
+                      onClick={() => {
+                        setCurrentIndex((prevIndex) => (prevIndex - 1 + room.images.length) % room.images.length);
+                      }}
                       className="absolute left-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-70 p-2 rounded-full text-gray-700 hover:bg-opacity-100 transition"
                     >
                       <FaArrowLeft />
                     </button>
                     <button 
-                      onClick={() => nextImage(room.id)}
+                      onClick={() => {
+                        setCurrentIndex((prevIndex) => (prevIndex + 1) % room.images.length);
+                      }}
                       className="absolute right-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-70 p-2 rounded-full text-gray-700 hover:bg-opacity-100 transition"
                     >
                       <FaArrowRight />
@@ -147,7 +164,7 @@ const Gallery = () => {
                       {room.images.map((_, index) => (
                         <div 
                           key={index}
-                          className={`h-2 w-2 rounded-full ${currentImageIndex[room.id] === index ? 'bg-white' : 'bg-gray-400'}`}
+                          className={`h-2 w-2 rounded-full ${currentIndex === index ? 'bg-white' : 'bg-gray-400'}`}
                         />
                       ))}
                     </div>

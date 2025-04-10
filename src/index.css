@@ -102,3 +102,20 @@
 .status-cancelled {
   @apply bg-red-100 text-red-800;
 }
+
+/* Estilos para o carrossel de imagens */
+.carousel {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+  min-width: 100%;
+}
+
+/* Fim dos estilos do carrossel */

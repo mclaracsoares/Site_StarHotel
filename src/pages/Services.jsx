@@ -30,6 +30,19 @@ const Services = () => {
     }
   ];
 
+  const specialServices = [
+    {
+      icon: <FaRegSmile className="text-blue-600" size={24} />,
+      title: 'Atendimento Especial',
+      description: 'No Star Hotel, acreditamos que o atendimento faz toda a diferença. Nossa equipe está sempre pronta para atender suas necessidades e garantir que sua estadia seja perfeita.'
+    },
+    {
+      icon: <FaClock className="text-blue-600" size={24} />,
+      title: 'Recepção 24 horas',
+      description: 'Recepção 24 horas disponível para atender suas necessidades.'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -44,63 +57,19 @@ const Services = () => {
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-lg p-8 transform transition duration-300 hover:scale-105">
+          {services.concat(specialServices).map((service, index) => (
+            <div key={index} className="bg-white rounded-lg shadow-lg p-6 transform transition duration-300 hover:scale-105 hover:shadow-xl">
               <div className="flex justify-center mb-4">
                 {service.icon}
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2 text-center">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 text-center">
                 {service.title}
               </h3>
-              <p className="text-gray-600 text-center">
+              <p className="text-gray-600 text-center text-sm">
                 {service.description}
               </p>
             </div>
           ))}
-        </div>
-
-        {/* Bloco adicional de informações */}
-        <div className="mt-16 bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            <div className="p-8 flex flex-col justify-center">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                Atendimento Especial
-              </h3>
-              <p className="text-gray-600 mb-4">
-                No Star Hotel, acreditamos que o atendimento faz toda a diferença. Nossa equipe está sempre pronta para atender suas necessidades e garantir que sua estadia seja perfeita.
-              </p>
-              <div className="flex items-center mb-4">
-                <FaRegSmile className="text-blue-600 mr-3" size={24} />
-                <p className="text-gray-700">Equipe atenciosa e prestativa</p>
-              </div>
-              <div className="flex items-center mb-4">
-                <FaClock className="text-blue-600 mr-3" size={24} />
-                <p className="text-gray-700">Recepção 24 horas</p>
-              </div>
-              <div className="mt-4">
-                <a
-                  href="/contato"
-                  className="inline-block bg-wine-700 text-white py-2 px-4 rounded hover:bg-wine-800 transition"
-                >
-                  Entre em Contato
-                </a>
-              </div>
-            </div>
-            <div className="bg-blue-50 p-8 flex items-center justify-center">
-              <div className="text-center">
-                <h4 className="text-xl font-semibold text-gray-900 mb-3">Clima em Limoeiro</h4>
-                <p className="text-gray-600 mb-2">
-                  Limoeiro tem um clima tropical agradável durante todo o ano.
-                </p>
-                <p className="text-gray-600 mb-2">
-                  Temperatura média: 24°C - 32°C
-                </p>
-                <p className="text-gray-600">
-                  Melhor época para visitar: Junho a Agosto
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

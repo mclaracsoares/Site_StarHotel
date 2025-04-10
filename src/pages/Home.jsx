@@ -36,13 +36,13 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
-                src="/images/quarto_standard.jpg"
-                alt="Quarto Standard"
+                src="/public/images/duplo.jpg"
+                alt="Quarto Duplo"
                 className="w-full h-64 object-cover"
               />
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Quarto Standard
+                  Quarto Duplo
                 </h3>
                 <p className="text-gray-600 mb-4">
                   Conforto e praticidade para sua estadia.
@@ -58,7 +58,7 @@ const Home = () => {
 
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
-                src="/images/quarto_casal.jpg"
+                src="/public/images/casal.jpg"
                 alt="Quarto Casal"
                 className="w-full h-64 object-cover"
               />
@@ -80,7 +80,7 @@ const Home = () => {
 
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
-                src="/images/quarto_triplo.jpg"
+                src="/public/images/triplo.jpg"
                 alt="Quarto Triplo"
                 className="w-full h-64 object-cover"
               />
@@ -102,7 +102,7 @@ const Home = () => {
 
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
-                src="/images/flat.jpg"
+                src="/public/images/flat.jpg"
                 alt="Flat"
                 className="w-full h-64 object-cover"
               />

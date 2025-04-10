@@ -17,6 +17,9 @@ function ListaReservasPage() {
     numeroPessoas: '',
     observacoes: ''
   })
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [actionToConfirm, setActionToConfirm] = useState(null);
+  const [reservationIdToActOn, setReservationIdToActOn] = useState(null);
 
   useEffect(() => {
     const fetchReservas = async () => {
@@ -162,7 +165,6 @@ function ListaReservasPage() {
     
     setLoading(true);
     try {
-      // Utilizamos a Master Key através da Cloud Function
       await Parse.Cloud.run('updateReservation', {
         reservationId: reservaEditando.id,
         data: {
@@ -177,7 +179,6 @@ function ListaReservasPage() {
         }
       });
       
-      // Atualiza a lista de reservas
       setReservas(prevReservas => 
         prevReservas.map(reserva => 
           reserva.id === reservaEditando.id 
@@ -198,7 +199,11 @@ function ListaReservasPage() {
       
       setReservaEditando(null);
       setLoading(false);
-      alert('Reserva atualizada com sucesso!');
+      // Mostrar mensagem de sucesso após edição
+      setTimeout(() => {
+        setShowConfirmModal(true);
+        setActionToConfirm('editSuccess');
+      }, 100);
     } catch (error) {
       console.error('Erro ao atualizar reserva:', error);
       setError(`Erro ao atualizar reserva: ${error.message}`);
@@ -206,19 +211,39 @@ function ListaReservasPage() {
     }
   };
 
+  const openConfirmModal = (action, reservationId) => {
+    if (action === 'delete') {
+      setActionToConfirm(action);
+      setReservationIdToActOn(reservationId);
+      setShowConfirmModal(true);
+    }
+  };
+
+  const closeConfirmModal = () => {
+    setShowConfirmModal(false);
+    setActionToConfirm(null);
+    setReservationIdToActOn(null);
+  };
+
+  const confirmAction = async () => {
+    if (actionToConfirm === 'delete') {
+      await handleDelete(reservationIdToActOn);
+    }
+    closeConfirmModal();
+  };
+
   // Função para deletar reserva
   const handleDelete = async (reservaId) => {
-    if (!confirm('Tem certeza que deseja excluir esta reserva?')) return;
-    
     setLoading(true);
     try {
-      // Utilizamos a Master Key através da Cloud Function para fazer o delete
       await Parse.Cloud.run('deleteReservation', { reservationId: reservaId });
-      
-      // Atualiza a lista de reservas
       setReservas(prevReservas => prevReservas.filter(reserva => reserva.id !== reservaId));
       setLoading(false);
-      alert('Reserva excluída com sucesso!');
+      // Mostrar mensagem de sucesso após exclusão
+      setTimeout(() => {
+        setShowConfirmModal(true);
+        setActionToConfirm('deleteSuccess');
+      }, 100);
     } catch (error) {
       console.error('Erro ao excluir reserva:', error);
       setError(`Erro ao excluir reserva: ${error.message}`);
@@ -318,7 +343,7 @@ function ListaReservasPage() {
                       Editar
                     </button>
                     <button 
-                      onClick={() => handleDelete(reserva.id)}
+                      onClick={() => openConfirmModal('delete', reserva.id)}
                       className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition"
                     >
                       Excluir
@@ -405,9 +430,10 @@ function ListaReservasPage() {
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-wine-900 focus:ring focus:ring-wine-800 focus:ring-opacity-50"
                   >
                     <option value="">Selecione um tipo</option>
-                    <option value="standard">Quarto Standard</option>
-                    <option value="deluxe">Quarto Deluxe</option>
-                    <option value="suite">Suíte</option>
+                    <option value="triplo">Quarto Triplo</option>
+                    <option value="duplo">Quarto Duplo</option>
+                    <option value="casal">Quarto Casal</option>
+                    <option value="flat">Flat</option>
                   </select>
                 </div>
                 <div>
@@ -456,6 +482,45 @@ function ListaReservasPage() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Modal de Confirmação */}
+      {showConfirmModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+            <h2 className="text-xl font-bold text-wine-900 mb-4">Confirmação</h2>
+            <p className="text-gray-700 mb-4">
+              {actionToConfirm === 'delete' ? 'Tem certeza que deseja excluir esta reserva?' :
+               actionToConfirm === 'editSuccess' ? 'Reserva editada com sucesso!' :
+               'Reserva excluída com sucesso!'}
+            </p>
+            <div className="flex justify-end space-x-3">
+              {actionToConfirm === 'delete' ? (
+                <>
+                  <button
+                    onClick={closeConfirmModal}
+                    className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    onClick={confirmAction}
+                    className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-wine-900 hover:bg-wine-800"
+                  >
+                    Confirmar
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={closeConfirmModal}
+                  className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-wine-900 hover:bg-wine-800"
+                >
+                  Fechar
+                </button>
+              )}
+            </div>
           </div>
         </div>
       )}
