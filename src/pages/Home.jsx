@@ -102,7 +102,7 @@ const Home = () => {
 
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
-                src="/public/images/flat.jpg"
+                src="/images/flat.jpg"
                 alt="Flat"
                 className="w-full h-64 object-cover"
               />
