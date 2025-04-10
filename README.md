@@ -57,35 +57,54 @@ npm run dev
 yarn dev
 ```
 
-## 📦 Estrutura do Projeto
 
-star-hotel/
-├── public/
-│ └── images/
-├── src/
-│ ├── components/
-│ │ ├── Header.jsx
-│ │ ├── Footer.jsx
-│ │ └── WeatherWidget.jsx
-│ ├── pages/
-│ │ ├── HomePage.jsx
-│ │ ├── ReservasPage.jsx
-│ │ ├── AdminPage.jsx
-│ │ └── ConfirmacaoPage.jsx
-│ ├── config/
-│ │ ├── parseConfig.js
-│ │ └── weatherConfig.js
-│ ├── App.jsx
-│ ├── index.jsx
-│ └── index.css
-├── .eslintrc.cjs
-├── .prettierrc
-├── .gitignore
-├── index.html
-├── package.json
-├── tailwind.config.js
-└── vite.config.js
+### Diretórios Principais
 
+- **public/**: Contém arquivos estáticos que serão servidos diretamente, como o `index.html`.
+
+- **src/**: Diretório principal do código-fonte do projeto.
+
+  - **assets/**: Armazena recursos estáticos como imagens, fontes e outros arquivos.
+
+  - **components/**: Contém componentes reutilizáveis do React utilizados em várias partes do projeto.
+
+  - **config/**: Arquivos de configuração, incluindo a integração com Back4App.
+
+  - **pages/**: Componentes que representam páginas inteiras do site.
+
+  - **services/**: Módulos que lidam com chamadas a APIs e outras funcionalidades externas.
+
+  - **styles/**: Arquivos de estilo globais e configurações do Tailwind CSS.
+
+  - **utils/**: Funções utilitárias e helpers usados em todo o projeto.
+
+### Arquivos Principais
+
+- **.env.\***: Arquivos de ambiente para configurar variáveis sensíveis para diferentes ambientes (desenvolvimento, produção, etc.).
+
+- **.eslintrc.cjs**: Configuração do ESLint para manter a qualidade e consistência do código.
+
+- **.gitignore**: Especifica quais arquivos e diretórios devem ser ignorados pelo Git.
+
+- **.prettierrc**: Configuração do Prettier para formatação automática do código.
+
+- **CONTRIBUTING.md**: Guia para contribuidores, explicando como colaborar com o projeto.
+
+- **LICENSE**: Licença MIT que define os termos sob os quais o projeto pode ser usado e distribuído.
+
+- **README.md**: Este arquivo, fornecendo uma visão geral do projeto.
+
+- **index.html**: Arquivo HTML principal que serve como ponto de entrada para o aplicativo React.
+
+- **package-lock.json**: Arquivo gerado automaticamente que descreve as dependências exatas do projeto.
+
+- **package.json**: Contém informações sobre o projeto e suas dependências.
+
+- **postcss.config.js**: Configuração do PostCSS, utilizado em conjunto com o Tailwind CSS.
+
+- **tailwind.config.js**: Configuração personalizada do Tailwind CSS.
+
+- **vite.config.js**: Configuração do Vite, o bundler utilizado para o desenvolvimento do projeto.
 
 
 ## 📝 Licença
