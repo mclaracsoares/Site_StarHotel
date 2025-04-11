@@ -2,142 +2,84 @@
 
 Um site moderno para o Star Hotel, localizado em Limoeiro-PE, desenvolvido com React e Tailwind CSS.
 
+## 👤 Desenvolvedores
+
+- Maria Clara Soares [GitHub](https://github.com/mclaracsoares)
+- Marco Antonio Arcoverde [GitHub](https://github.com/marcoarc01)
+- Pedro Filipe macedo [GitHub](https://github.com/pedrometal)
+- Lucas Eduardo Gurgel [GitHub](https://github.com/lgurgel1)
+- igor Carvalheira [GitHub](https://github.com/igorcarvalheira)
+
 ## 🚀 Funcionalidades
 
 - Design responsivo e moderno
 - Sistema de reservas integrado com Back4App
-- Widget de clima em tempo real
+- Widget de clima em tempo real para Limoeiro
 - Painel administrativo para gerenciamento de reservas
-- Páginas informativas sobre o hotel e seus serviços
+- Interface intuitiva para hóspedes e administradores
 
 ## 🛠️ Tecnologias Utilizadas
 
-- React
+- React + Vite
 - Tailwind CSS
-- Back4App (Backend as a Service)
+- Back4App
 - OpenWeather API
 - React Router
-- Vite
-- ESLint
-- Prettier
+- Vercel (Deploy)
 
 ## 📋 Pré-requisitos
 
-- Node.js (versão 14 ou superior)
-- npm ou yarn
+- Node.js
+- npm
 - Conta no Vercel (https://vercel.com)
 
-## 🔧 Instalação e Deploy
+## 🔧 Deploy no Vercel
 
-### Instalação Local
+1. Instale o Vercel CLI:
 
-1. Clone o repositório:
-```bash
-git clone https://github.com/seu-usuario/star-hotel.git
-cd star-hotel
-```
-
-2. Instale as dependências:
-```bash
-npm install
-# ou
-yarn install
-```
-
-3. Inicie o servidor de desenvolvimento:
-```bash
-npm run dev
-# ou
-yarn dev
-```
-
-### Deploy no Vercel
-
-1. Instale o Vercel CLI globalmente:
 ```bash
 npm install -g vercel
 ```
 
-2. Faça login na sua conta Vercel:
+2. Faça login:
+
 ```bash
 vercel login
 ```
 
-3. Execute o deploy:
+3. Deploy:
+
 ```bash
 vercel
 ```
 
-Ou, alternativamente, você pode:
+## 📁 Estrutura do Projeto
 
-1. Conectar seu repositório GitHub ao Vercel
-2. Importar o projeto no painel do Vercel
-3. O Vercel detectará automaticamente que é um projeto React/Vite
-4. Clique em "Deploy"
+```
+src/
+├── assets/      # Imagens e recursos estáticos
+├── components/  # Componentes React reutilizáveis
+├── config/      # Configurações (Back4App, etc)
+├── pages/       # Páginas do site
+├── services/    # Integrações com APIs
+└── styles/      # Estilos e configuração Tailwind
+```
 
-O Vercel irá:
-- Construir automaticamente o projeto
-- Configurar o domínio
-- Gerenciar o SSL
-- Fazer deploy automático quando houver novas alterações no repositório
+## 🔑 Configurações
 
-### Diretórios Principais
+O projeto utiliza as seguintes integrações:
 
-- **public/**: Contém arquivos estáticos que serão servidos diretamente, como o `index.html`.
+- Back4App para gerenciamento de reservas
+- OpenWeather API para informações climáticas
+- Vercel para hospedagem
 
-- **src/**: Diretório principal do código-fonte do projeto.
+## 📱 Recursos Mobile
 
-  - **assets/**: Armazena recursos estáticos como imagens, fontes e outros arquivos.
+- Layout totalmente responsivo
+- Experiência otimizada para dispositivos móveis
+- PWA (Progressive Web App) ready
 
-  - **components/**: Contém componentes reutilizáveis do React utilizados em várias partes do projeto.
+## 🌐 Links
 
-  - **config/**: Arquivos de configuração, incluindo a integração com Back4App.
-
-  - **pages/**: Componentes que representam páginas inteiras do site.
-
-  - **services/**: Módulos que lidam com chamadas a APIs e outras funcionalidades externas.
-
-  - **styles/**: Arquivos de estilo globais e configurações do Tailwind CSS.
-
-  - **utils/**: Funções utilitárias e helpers usados em todo o projeto.
-
-### Arquivos Principais
-
-- **.env.\***: Arquivos de ambiente para configurar variáveis sensíveis para diferentes ambientes (desenvolvimento, produção, etc.).
-
-- **.eslintrc.cjs**: Configuração do ESLint para manter a qualidade e consistência do código.
-
-- **.gitignore**: Especifica quais arquivos e diretórios devem ser ignorados pelo Git.
-
-- **.prettierrc**: Configuração do Prettier para formatação automática do código.
-
-- **CONTRIBUTING.md**: Guia para contribuidores, explicando como colaborar com o projeto.
-
-- **LICENSE**: Licença MIT que define os termos sob os quais o projeto pode ser usado e distribuído.
-
-- **README.md**: Este arquivo, fornecendo uma visão geral do projeto.
-
-- **index.html**: Arquivo HTML principal que serve como ponto de entrada para o aplicativo React.
-
-- **package-lock.json**: Arquivo gerado automaticamente que descreve as dependências exatas do projeto.
-
-- **package.json**: Contém informações sobre o projeto e suas dependências.
-
-- **postcss.config.js**: Configuração do PostCSS, utilizado em conjunto com o Tailwind CSS.
-
-- **tailwind.config.js**: Configuração personalizada do Tailwind CSS.
-
-- **vite.config.js**: Configuração do Vite, o bundler utilizado para o desenvolvimento do projeto.
-
-
-## 📝 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-## ✨ Contribuição
-
-Contribuições são sempre bem-vindas! Por favor, leia as [diretrizes de contribuição](CONTRIBUTING.md) antes de enviar um pull request.
-
-## 📞 Contato
-
-Para mais informações, entre em contato através do e-mail: contato@starhotel.com.br
+- Site em produção: https://star-hotel-limoeiro-fgfb9xrrp.vercel.app
+- Repositório: [GitHub](https://github.com/lgurgel1/projeto_web)
