@@ -19,6 +19,7 @@ export default defineConfig({
     sourcemap: true,
     minify: 'terser',
     target: 'esnext',
+    assetsDir: '_assets',
     rollupOptions: {
       output: {
         manualChunks: {

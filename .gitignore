@@ -33,3 +33,4 @@ yarn-error.log*
 # Arquivos de configuração
 .eslintcache
 .prettiercache
+.vercel
