@@ -1,8 +1,8 @@
 import Parse from 'parse/dist/parse.min.js'
 
 // Configuração do Parse
-const PARSE_APP_ID = import.meta.env.VITE_BACK4APP_APPLICATION_ID
-const PARSE_JS_KEY = import.meta.env.VITE_BACK4APP_JAVASCRIPT_KEY
+const PARSE_APP_ID = '9KzCQQlfWXBDR704SpccARG8khwLsYdAHh9lL0Va'
+const PARSE_JS_KEY = 'b1v8YRQXrP4S8o818FD4LGHBI9mpMyAzbOLVPVJN'
 const PARSE_SERVER_URL = 'https://parseapi.back4app.com/'
 
 // Inicialização do Parse

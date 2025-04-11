@@ -8,14 +8,13 @@ function WeatherWidget() {
 
   useEffect(() => {
     const fetchWeather = async () => {
-      console.log('Tentando usar a chave API:', import.meta.env.VITE_WEATHER_API_KEY);
       try {
         const response = await axios.get(
           'https://api.openweathermap.org/data/2.5/weather',
           {
             params: {
               q: 'Limoeiro,BR',
-              appid: import.meta.env.VITE_WEATHER_API_KEY,
+              appid: '3e3e60f396cf9af3a3afda458480fc23',
               units: 'metric',
               lang: 'pt_br'
             }

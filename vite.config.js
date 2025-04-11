@@ -13,5 +13,19 @@ export default defineConfig({
     port: 3000,
     open: true,
     host: true
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: true,
+    minify: 'terser',
+    target: 'esnext',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          parse: ['parse']
+        }
+      }
+    }
   }
 })

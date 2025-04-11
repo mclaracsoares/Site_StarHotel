@@ -25,8 +25,11 @@ Um site moderno para o Star Hotel, localizado em Limoeiro-PE, desenvolvido com R
 
 - Node.js (versão 14 ou superior)
 - npm ou yarn
+- Conta no Vercel (https://vercel.com)
 
-## 🔧 Instalação
+## 🔧 Instalação e Deploy
+
+### Instalação Local
 
 1. Clone o repositório:
 ```bash
@@ -41,22 +44,42 @@ npm install
 yarn install
 ```
 
-3. Configure as variáveis de ambiente:
-- Crie um arquivo `.env` na raiz do projeto
-- Adicione suas chaves de API:
-
-VITE_BACK4APP_APP_ID=sua_app_id
-VITE_BACK4APP_JS_KEY=sua_js_key
-VITE_WEATHER_API_KEY=sua_chave_api
-
-
-4. Inicie o servidor de desenvolvimento:
+3. Inicie o servidor de desenvolvimento:
 ```bash
 npm run dev
 # ou
 yarn dev
 ```
 
+### Deploy no Vercel
+
+1. Instale o Vercel CLI globalmente:
+```bash
+npm install -g vercel
+```
+
+2. Faça login na sua conta Vercel:
+```bash
+vercel login
+```
+
+3. Execute o deploy:
+```bash
+vercel
+```
+
+Ou, alternativamente, você pode:
+
+1. Conectar seu repositório GitHub ao Vercel
+2. Importar o projeto no painel do Vercel
+3. O Vercel detectará automaticamente que é um projeto React/Vite
+4. Clique em "Deploy"
+
+O Vercel irá:
+- Construir automaticamente o projeto
+- Configurar o domínio
+- Gerenciar o SSL
+- Fazer deploy automático quando houver novas alterações no repositório
 
 ### Diretórios Principais
 
