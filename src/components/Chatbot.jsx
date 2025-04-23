@@ -51,13 +51,14 @@ const Chatbot = () => {
   }, []);
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div ref={chatbotRef} className="fixed bottom-20 right-4 z-50">
       {!isOpen ? (
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-wine-600 text-white p-4 rounded-full shadow-lg hover:bg-wine-700 transition-colors"
+          className="bg-wine-600 text-white p-4 rounded-full shadow-lg hover:bg-wine-700 transition-colors flex items-center gap-2"
         >
           <FaRobot size={24} />
+          <span className="text-sm font-medium">Chat</span>
         </button>
       ) : (
         <div className="bg-white rounded-lg shadow-xl w-80 h-96 flex flex-col">
