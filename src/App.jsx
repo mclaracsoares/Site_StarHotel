@@ -15,6 +15,7 @@ import Reservations from './pages/Reservations'
 import ListaReservasPage from './pages/ListaReservasPage'
 import LoginPage from './pages/LoginPage'
 import Parse from './config/back4app'
+import Chatbot from './components/Chatbot'
 import './index.css'
 
 // Componente simples para rota protegida de Admin
@@ -81,6 +82,7 @@ function App() {
         </main>
         <Footer />
         <WhatsAppButton />
+        <Chatbot />
       </div>
     </Router>
   )
