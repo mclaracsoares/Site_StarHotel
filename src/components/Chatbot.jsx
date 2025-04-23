@@ -7,12 +7,12 @@ const Chatbot = () => {
   const [input, setInput] = useState('');
 
   const questionsAndAnswers = {
-    "tipos de quartos": "Oferecemos quartos Standard, Luxo e Suíte. Todos com ar-condicionado, TV, frigobar e Wi-Fi gratuito.",
-    "preço": "Os preços variam conforme o tipo de quarto: Standard R$ 200, Luxo R$ 300 e Suíte R$ 400 (valores por diária).",
+    "tipos de quartos": "Oferecemos qutro tipos de quartos, Todos com ar-condicionado, TV, frigobar e Wi-Fi gratuito. Verifique a 'Galeria' do Site para mais detalhes.",
+    "preço": "Os preços variam conforme o tipo de quarto Verifique a aba 'Galeria' do Site para mais detalhes.",
     "check-in": "O check-in é a partir das 14h e o check-out até as 12h.",
-    "estacionamento": "Sim, oferecemos estacionamento gratuito para todos os hóspedes.",
-    "serviços": "Incluímos café da manhã, Wi-Fi, estacionamento, serviço de quarto e piscina.",
-    "cancelar": "Para cancelar uma reserva, entre em contato pelo WhatsApp do Hotel: (81) 99999-9999",
+    "estacionamento": "Sim, oferecemos estacionamento gratuito para todos os hóspedes sem limites de vaga.",
+    "serviços": "Incluímos, Wi-Fi, estacionamento e serviço de quarto.",
+    "cancelmento": "Para cancelar uma reserva, entre em contato pelo WhatsApp do Hotel (Verifique a aba 'Contato' do Site).",
     "pagamento": "Aceitamos PIX, dinheiro e cartão. O pagamento é feito diretamente no hotel."
   };
 
