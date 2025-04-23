@@ -9,7 +9,7 @@ const Chatbot = () => {
 
   const questionsAndAnswers = {
     "tipos de quartos": "Oferecemos qutro tipos de quartos, Todos com ar-condicionado, TV, frigobar e Wi-Fi gratuito. Verifique a 'Galeria' do Site para mais detalhes.",
-    "preço": "Os preços variam conforme o tipo de quarto Verifique a aba 'Galeria' do Site para mais detalhes.",
+    "preço": "Os preços variam conforme o tipo de quarto. Verifique a aba 'Galeria' do Site para mais detalhes.",
     "check-in": "O check-in é a partir das 14h e o check-out até as 12h.",
     "estacionamento": "Sim, oferecemos estacionamento gratuito para todos os hóspedes sem limites de vaga.",
     "serviços": "Incluímos, Wi-Fi, estacionamento e serviço de quarto.",
