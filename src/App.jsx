@@ -33,59 +33,59 @@ function UserRoute({ children }) {
 }
 
 function App() {
-  // Estado para forçar re-renderização após login/logout
   const [authKey, setAuthKey] = useState(0); 
   const [currentUser, setCurrentUser] = useState(Parse.User.current());
 
   useEffect(() => {
     const handleUserChange = () => {
-      setAuthKey(prevKey => prevKey + 1); // Muda a key para forçar re-render
+      setAuthKey(prevKey => prevKey + 1);
       setCurrentUser(Parse.User.current());
     };
     window.addEventListener('userChange', handleUserChange);
     return () => window.removeEventListener('userChange', handleUserChange);
   }, []);
 
-  // Redireciona para login se não estiver logado
-  useEffect(() => {
-    if (!currentUser && window.location.pathname !== '/login' && 
-        window.location.pathname !== '/cadastro') {
-      window.location.href = '/login';
-    }
-  }, [currentUser]);
+  // Verifica se o usuário atual é admin
+  const isAdmin = currentUser && currentUser.get('username') === 'admin_hotel';
 
   return (
     <Router>
-      <div className="min-h-screen flex flex-col">
-        <Header key={authKey} />
-        <main className="flex-grow">
-          <Routes>
-            {/* Redireciona a página principal para login se não estiver logado */}
-            <Route path="/" element={currentUser ? <HomePage /> : <Navigate to="/login" replace />} />
-            
-            {/* Tela de login sempre acessível */}
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/cadastro" element={<LoginPage showRegister={true} />} />
-            
-            {/* Rotas protegidas por login */}
-            <Route path="/reservas" element={<UserRoute><ReservasPage /></UserRoute>} />
-            <Route path="/sobre" element={<UserRoute><SobrePage /></UserRoute>} />
-            <Route path="/galeria" element={<UserRoute><GaleriaPage /></UserRoute>} />
-            <Route path="/servicos" element={<UserRoute><Services /></UserRoute>} />
-            <Route path="/contato" element={<UserRoute><Contact /></UserRoute>} />
-            <Route path="/confirmacao" element={<UserRoute><ConfirmacaoPage /></UserRoute>} />
-            <Route path="/lista-reservas" element={<UserRoute><ListaReservasPage /></UserRoute>} />
-            
-            {/* Rota apenas para admin */}
-            <Route path="/reservations" element={<AdminRoute><Reservations /></AdminRoute>} />
-          </Routes>
-        </main>
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/reservas" element={<ReservasPage />} />
+          <Route path="/confirmacao" element={<ConfirmacaoPage />} />
+          <Route path="/galeria" element={<GaleriaPage />} />
+          <Route path="/sobre" element={<SobrePage />} />
+          <Route path="/contato" element={<Contact />} />
+          <Route path="/servicos" element={<Services />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/reservations"
+            element={
+              <AdminRoute>
+                <Reservations />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/lista-reservas"
+            element={
+              <UserRoute>
+                <ListaReservasPage />
+              </UserRoute>
+            }
+          />
+        </Routes>
         <Footer />
         <WhatsAppButton />
-        <Chatbot />
+        {/* Mostra o Chatbot apenas para não-admins */}
+        {!isAdmin && <Chatbot />}
       </div>
     </Router>
-  )
+  );
 }
 
 export default App

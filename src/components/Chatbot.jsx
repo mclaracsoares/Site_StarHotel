@@ -1,19 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FaRobot, FaTimes, FaPaperPlane } from 'react-icons/fa';
-import Parse from '../config/back4app';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  useEffect(() => {
-    const currentUser = Parse.User.current();
-    if (currentUser) {
-      setIsAdmin(currentUser.get('username') === 'admin_hotel');
-    }
-  }, []);
 
   const questionsAndAnswers = {
     "tipos de quartos": "Oferecemos quartos Standard, Luxo e Suíte. Todos com ar-condicionado, TV, frigobar e Wi-Fi gratuito.",
@@ -44,11 +35,6 @@ const Chatbot = () => {
     ]);
     setInput('');
   };
-
-  // Não mostrar o chatbot para administradores
-  if (isAdmin) {
-    return null;
-  }
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
