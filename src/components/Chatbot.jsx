@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FaRobot, FaTimes, FaPaperPlane } from 'react-icons/fa';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const chatbotRef = useRef(null);
 
   const questionsAndAnswers = {
     "tipos de quartos": "Oferecemos qutro tipos de quartos, Todos com ar-condicionado, TV, frigobar e Wi-Fi gratuito. Verifique a 'Galeria' do Site para mais detalhes.",
@@ -35,6 +36,19 @@ const Chatbot = () => {
     ]);
     setInput('');
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (chatbotRef.current && !chatbotRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="fixed bottom-4 right-4 z-50">

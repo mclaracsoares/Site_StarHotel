@@ -81,8 +81,7 @@ function App() {
         </Routes>
         <Footer />
         <WhatsAppButton />
-        {/* Mostra o Chatbot apenas para não-admins */}
-        {!isAdmin && <Chatbot />}
+        <Chatbot />
       </div>
     </Router>
   );
