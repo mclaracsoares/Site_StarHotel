@@ -51,7 +51,7 @@ const Chatbot = () => {
   }, []);
 
   return (
-    <div ref={chatbotRef} className="fixed bottom-20 right-4 z-50">
+    <div ref={chatbotRef} className="fixed bottom-20 right-4 z-[100]">
       {!isOpen ? (
         <button
           onClick={() => setIsOpen(true)}
