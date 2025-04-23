@@ -15,7 +15,6 @@ import Reservations from './pages/Reservations'
 import ListaReservasPage from './pages/ListaReservasPage'
 import LoginPage from './pages/LoginPage'
 import Parse from './config/back4app'
-import Chatbot from './components/Chatbot'
 import './index.css'
 
 // Componente simples para rota protegida de Admin
@@ -53,37 +52,34 @@ function App() {
       <div className="flex flex-col min-h-screen">
         <Header />
         <Navbar />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/reservas" element={<ReservasPage />} />
-            <Route path="/confirmacao" element={<ConfirmacaoPage />} />
-            <Route path="/galeria" element={<GaleriaPage />} />
-            <Route path="/sobre" element={<SobrePage />} />
-            <Route path="/contato" element={<Contact />} />
-            <Route path="/servicos" element={<Services />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route
-              path="/reservations"
-              element={
-                <AdminRoute>
-                  <Reservations />
-                </AdminRoute>
-              }
-            />
-            <Route
-              path="/lista-reservas"
-              element={
-                <UserRoute>
-                  <ListaReservasPage />
-                </UserRoute>
-              }
-            />
-          </Routes>
-        </main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/reservas" element={<ReservasPage />} />
+          <Route path="/confirmacao" element={<ConfirmacaoPage />} />
+          <Route path="/galeria" element={<GaleriaPage />} />
+          <Route path="/sobre" element={<SobrePage />} />
+          <Route path="/contato" element={<Contact />} />
+          <Route path="/servicos" element={<Services />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/reservations"
+            element={
+              <AdminRoute>
+                <Reservations />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/lista-reservas"
+            element={
+              <UserRoute>
+                <ListaReservasPage />
+              </UserRoute>
+            }
+          />
+        </Routes>
         <Footer />
         <WhatsAppButton />
-        <Chatbot />
       </div>
     </Router>
   );
