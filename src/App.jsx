@@ -53,32 +53,34 @@ function App() {
       <div className="flex flex-col min-h-screen">
         <Header />
         <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/reservas" element={<ReservasPage />} />
-          <Route path="/confirmacao" element={<ConfirmacaoPage />} />
-          <Route path="/galeria" element={<GaleriaPage />} />
-          <Route path="/sobre" element={<SobrePage />} />
-          <Route path="/contato" element={<Contact />} />
-          <Route path="/servicos" element={<Services />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route
-            path="/reservations"
-            element={
-              <AdminRoute>
-                <Reservations />
-              </AdminRoute>
-            }
-          />
-          <Route
-            path="/lista-reservas"
-            element={
-              <UserRoute>
-                <ListaReservasPage />
-              </UserRoute>
-            }
-          />
-        </Routes>
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/reservas" element={<ReservasPage />} />
+            <Route path="/confirmacao" element={<ConfirmacaoPage />} />
+            <Route path="/galeria" element={<GaleriaPage />} />
+            <Route path="/sobre" element={<SobrePage />} />
+            <Route path="/contato" element={<Contact />} />
+            <Route path="/servicos" element={<Services />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route
+              path="/reservations"
+              element={
+                <AdminRoute>
+                  <Reservations />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/lista-reservas"
+              element={
+                <UserRoute>
+                  <ListaReservasPage />
+                </UserRoute>
+              }
+            />
+          </Routes>
+        </main>
         <Footer />
         <WhatsAppButton />
         <Chatbot />
