@@ -1,6 +1,6 @@
 import sgMail from '@sendgrid/mail';
 
-sgMail.setApiKey('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');
+sgMail.setApiKey('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');
 
 export const sendConfirmationEmail = async (to, reservationDetails) => {
   const msg = {

@@ -7,6 +7,9 @@
 /dist
 /build
 
+# Arquivo de configuração do SendGrid (chave de API)
+src/config/sendgrid.js
+
 # Logs
 npm-debug.log*
 yarn-debug.log*
