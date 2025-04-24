@@ -25,6 +25,7 @@ export const sendConfirmationEmail = async (to, reservationDetails) => {
         </ul>
         <p>Para qualquer dúvida ou alteração, entre em contato conosco pelo WhatsApp.</p>
         <p>Atenciosamente,<br>Equipe Star Hotel</p>
+        
       </div>
     `,
   };
