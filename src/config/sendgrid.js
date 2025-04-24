@@ -1,18 +1,17 @@
 import sgMail from '@sendgrid/mail';
 
-// Coloque sua chave de API do SendGrid aqui
-sgMail.setApiKey('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');
+sgMail.setApiKey('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');
 
 export const sendConfirmationEmail = async (to, reservationDetails) => {
   const msg = {
-    to,
-    from: 'reservas@sendgrid.net', // Usando o domínio do SendGrid
+    to, 
+    from: 'confirmacaoStarHotel@gmail.com', 
     subject: 'Confirmação de Reserva - Star Hotel',
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #831843;">Confirmação de Reserva</h2>
         <p>Olá,</p>
-        <p>Sua reserva foi confirmada com sucesso!</p>
+        <p>Sua reserva no StarHotel Limoeiro foi confirmada com sucesso!</p>
         <h3 style="color: #831843;">Detalhes da Reserva:</h3>
         <ul>
           <li><strong>Nome:</strong> ${reservationDetails.nome}</li>
@@ -25,7 +24,6 @@ export const sendConfirmationEmail = async (to, reservationDetails) => {
         </ul>
         <p>Para qualquer dúvida ou alteração, entre em contato conosco pelo WhatsApp.</p>
         <p>Atenciosamente,<br>Equipe Star Hotel</p>
-        
       </div>
     `,
   };
@@ -37,4 +35,4 @@ export const sendConfirmationEmail = async (to, reservationDetails) => {
     console.error('Erro ao enviar email:', error);
     return false;
   }
-}; 
+};
