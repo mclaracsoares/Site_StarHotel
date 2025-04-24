@@ -1,0 +1,2 @@
+const SENDGRID_API_KEY = 'SUA_CHAVE_AQUI';
+export default SENDGRID_API_KEY;

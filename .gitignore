@@ -7,8 +7,8 @@
 /dist
 /build
 
-# Arquivo de configuração do SendGrid (chave de API)
-src/config/sendgrid.js
+# Arquivo com a chave real (NÃO deve subir)
+src/config/sendgrid.key.js
 
 # Logs
 npm-debug.log*

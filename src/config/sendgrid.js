@@ -1,11 +1,13 @@
 import sgMail from '@sendgrid/mail';
+import SENDGRID_API_KEY from './sendgrid.key.js';
 
-sgMail.setApiKey('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');
+
+sgMail.setApiKey(SENDGRID_API_KEY);
 
 export const sendConfirmationEmail = async (to, reservationDetails) => {
   const msg = {
-    to, 
-    from: 'confirmacaoStarHotel@gmail.com', 
+    to,
+    from: 'confirmacaoStarHotel@gmail.com',
     subject: 'Confirmação de Reserva - Star Hotel',
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
