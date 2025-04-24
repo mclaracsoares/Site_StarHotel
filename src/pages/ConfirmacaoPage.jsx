@@ -1,61 +1,104 @@
-import { useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { sendConfirmationEmail } from '../config/sendgrid';
 
-function ConfirmacaoPage() {
-  const location = useLocation()
-  const { reserva } = location.state || {}
+const ConfirmacaoPage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [emailSent, setEmailSent] = useState(false);
+  const [emailError, setEmailError] = useState(false);
 
-  if (!reserva) {
-    return (
-      <div className="container mx-auto px-4 py-12 text-center">
-        <h1 className="text-4xl font-playfair font-bold text-wine-900 mb-4">
-          Reserva não encontrada
-        </h1>
-        <p className="text-gray-600">
-          Por favor, faça uma nova reserva.
-        </p>
-      </div>
-    )
+  const reservationDetails = location.state?.reservationDetails;
+
+  useEffect(() => {
+    if (!reservationDetails) {
+      navigate('/reservas');
+      return;
+    }
+
+    const sendEmail = async () => {
+      if (!emailSent && reservationDetails.email) {
+        const success = await sendConfirmationEmail(
+          reservationDetails.email,
+          reservationDetails
+        );
+        setEmailSent(true);
+        setEmailError(!success);
+      }
+    };
+
+    sendEmail();
+  }, [reservationDetails, navigate, emailSent]);
+
+  if (!reservationDetails) {
+    return null;
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-4xl font-playfair font-bold text-wine-900 text-center mb-8">
+    <div className="container mx-auto px-4 py-8">
+      <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
+        <h1 className="text-3xl font-bold text-wine-900 mb-6 text-center">
           Reserva Confirmada!
         </h1>
 
-        <div className="space-y-4">
-          <div>
-            <h2 className="text-xl font-semibold text-gray-800 mb-2">Detalhes da Reserva</h2>
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="mb-2"><span className="font-semibold">Nome:</span> {reserva.nome}</p>
-              <p className="mb-2"><span className="font-semibold">Email:</span> {reserva.email}</p>
-              <p className="mb-2"><span className="font-semibold">Telefone:</span> {reserva.telefone}</p>
-              <p className="mb-2"><span className="font-semibold">Check-in:</span> {new Date(reserva.dataEntrada).toLocaleDateString()}</p>
-              <p className="mb-2"><span className="font-semibold">Check-out:</span> {new Date(reserva.dataSaida).toLocaleDateString()}</p>
-              <p className="mb-2"><span className="font-semibold">Tipo de Quarto:</span> {reserva.tipoQuarto}</p>
-              <p className="mb-2"><span className="font-semibold">Número de Pessoas:</span> {reserva.numeroPessoas}</p>
-              {reserva.observacoes && (
-                <p className="mb-2"><span className="font-semibold">Observações:</span> {reserva.observacoes}</p>
-              )}
-            </div>
-          </div>
-
-          <div className="mt-8 text-center">
-            <p className="text-gray-600 mb-4">
-              Um email de confirmação foi enviado para {reserva.email}
+        <div className="mb-6">
+          <p className="text-gray-700 mb-4">
+            Olá, {reservationDetails.nome}! Sua reserva foi confirmada com sucesso.
+          </p>
+          
+          {emailSent && !emailError && (
+            <p className="text-green-600 mb-4">
+              Um email de confirmação foi enviado para {reservationDetails.email}
             </p>
-            <a
-              href="/"
-              className="inline-block bg-wine-900 text-white px-6 py-3 rounded-lg hover:bg-wine-800 transition duration-300"
-            >
-              Voltar para a Página Inicial
-            </a>
+          )}
+          
+          {emailError && (
+            <p className="text-red-600 mb-4">
+              Não foi possível enviar o email de confirmação. Por favor, entre em contato conosco pelo WhatsApp.
+            </p>
+          )}
+
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <h2 className="text-xl font-semibold text-wine-900 mb-4">
+              Detalhes da Reserva
+            </h2>
+            <ul className="space-y-2">
+              <li>
+                <strong>Nome:</strong> {reservationDetails.nome}
+              </li>
+              <li>
+                <strong>Email:</strong> {reservationDetails.email}
+              </li>
+              <li>
+                <strong>Telefone:</strong> {reservationDetails.telefone}
+              </li>
+              <li>
+                <strong>Data de Check-in:</strong> {reservationDetails.checkIn}
+              </li>
+              <li>
+                <strong>Data de Check-out:</strong> {reservationDetails.checkOut}
+              </li>
+              <li>
+                <strong>Tipo de Quarto:</strong> {reservationDetails.tipoQuarto}
+              </li>
+              <li>
+                <strong>Número de Pessoas:</strong> {reservationDetails.numeroPessoas}
+              </li>
+            </ul>
           </div>
+        </div>
+
+        <div className="text-center">
+          <button
+            onClick={() => navigate('/')}
+            className="btn-primary"
+          >
+            Voltar para a Página Inicial
+          </button>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ConfirmacaoPage
+export default ConfirmacaoPage;

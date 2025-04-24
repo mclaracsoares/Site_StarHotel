@@ -11,6 +11,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@sendgrid/mail": "^8.1.5",
     "axios": "^1.6.7",
     "parse": "^6.1.1",
     "react": "^18.2.0",
