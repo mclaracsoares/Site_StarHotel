@@ -1,8 +1,8 @@
 import sgMail from '@sendgrid/mail';
 import SENDGRID_API_KEY from './sendgrid.key.js';
 
-
 sgMail.setApiKey(SENDGRID_API_KEY);
+
 
 export const sendConfirmationEmail = async (to, reservationDetails) => {
   const msg = {
