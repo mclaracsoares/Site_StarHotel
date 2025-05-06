@@ -4,20 +4,21 @@ Um site moderno para o Star Hotel, localizado em Limoeiro-PE, desenvolvido com R
 
 ## 👤 Desenvolvedores
 
-- Maria Clara Soares
-  [GitHub](https://github.com/mclaracsoares)
-  
-- Marco Antonio Arcoverde
-  [GitHub](https://github.com/marcoarc01)
-  
-- Pedro Filipe Macedo
-  [GitHub](https://github.com/pedrometal)
-  
-- Lucas Eduardo Gurgel
-  [GitHub](https://github.com/lgurgel1)
-  
-- Igor Carvalheira
-  [GitHub](https://github.com/igorcarvalheira)
+- **Maria Clara Soares**  
+  [Perfil no GitHub](https://github.com/mclaracsoares)
+
+- **Marco Antonio Arcoverde**  
+  [Perfil no GitHub](https://github.com/marcoarc01)
+
+- **Pedro Filipe Macedo**  
+  [Perfil no GitHub](https://github.com/pedrometal)
+
+- **Lucas Eduardo Gurgel**  
+  [Perfil no GitHub](https://github.com/lgurgel1)
+
+- **Igor Carvalheira**  
+  [Perfil no GitHub](https://github.com/igorcarvalheira)
+
 
 
 ## 🏨 Sobre o Site
