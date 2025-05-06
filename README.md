@@ -4,19 +4,21 @@ Um site moderno para o Star Hotel, localizado em Limoeiro-PE, desenvolvido com R
 
 ## 👤 Desenvolvedores
 
-<<<<<<< HEAD
-- Maria Clara Soares [GitHub](https://github.com/mclaracsoares)
-- Marco Antonio Arcoverde [GitHub](https://github.com/marcoarc01)
-- Pedro Filipe Macedo [GitHub](https://github.com/pedrometal)
-- Lucas Eduardo Gurgel [GitHub](https://github.com/lgurgel1)
-- Igor Carvalheira [GitHub](https://github.com/igorcarvalheira)
-=======
-- Maria Clara Soares [Perfil no GitHub](https://github.com/mclaracsoares)
-- Marco Antonio Arcoverde [Perfil no GitHub](https://github.com/marcoarc01)
-- Pedro Filipe Macedo [Perfil no GitHub](https://github.com/pedrometal)
-- Lucas Eduardo Gurgel [Perfil no GitHub](https://github.com/lgurgel1)
-- Igor Carvalheira [Perfil no GitHub](https://github.com/igorcarvalheira)
->>>>>>> fa625a165a6fed826d19dc4c810ff23f005a4f9c
+- Maria Clara Soares
+  [GitHub](https://github.com/mclaracsoares)
+  
+- Marco Antonio Arcoverde
+  [GitHub](https://github.com/marcoarc01)
+  
+- Pedro Filipe Macedo
+  [GitHub](https://github.com/pedrometal)
+  
+- Lucas Eduardo Gurgel
+  [GitHub](https://github.com/lgurgel1)
+  
+- Igor Carvalheira
+  [GitHub](https://github.com/igorcarvalheira)
+
 
 ## 🏨 Sobre o Site
 
@@ -118,19 +120,5 @@ O projeto utiliza as seguintes integrações:
 ## 🌐 Links
 
 - Site em produção: https://star-hotel-limoeiro.vercel.app
-<<<<<<< HEAD
-- Repositório: [GitHub](https://github.com/seu-usuario/star-hotel)
-
-## 📞 Contato
-
-Para mais informações sobre o Star Hotel:
-
-- 📧 Email: contato@starhotel.com.br
-- 📍 Localização: Limoeiro-PE
-
-## 📝 Licença
-
-Este projeto está sob a licença MIT.
-=======
-- Repositório: [GitHub](https://github.com/lgurgel1/projeto_web)
->>>>>>> fa625a165a6fed826d19dc4c810ff23f005a4f9c
+  
+- Repositório: [GitHub](https://github.com/mclaracsoares/Site_StarHotel)
